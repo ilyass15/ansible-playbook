@@ -1,0 +1,41 @@
+---
+- name: installation serveur web
+  hosts: all
+  vars:
+
+  tasks:
+   - name: installation de serveur web httpd
+     yum:
+      name: httpd
+      state: latest
+   - name: demarrage du serveur web
+     service:
+      name: httpd
+      state: started
+      enabled: true
+
+   - name: installation mysql 
+     yum:
+      name: mariadb-server
+      state: latest
+   - name:
+      yum: 
+      name: MySQL-python
+      state: latest
+
+   - name: demarrage de mariadb
+     service:
+      name: mariadb
+      state: started
+      enabled: true
+   
+   - name: Removes all anonymous user accounts
+     mysql_user:
+      name: ''
+      host_all: yes
+      state: absent
+      
+   - name: Create a new database with name 'bobdata'
+     mysql_db:
+      name: bobdata
+      state: present
