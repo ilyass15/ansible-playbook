@@ -1,8 +1,6 @@
 ---
 - name: installation serveur web
   hosts: all
-  vars:
-
   tasks:
    - name: installation de serveur web httpd
      yum:
@@ -13,13 +11,12 @@
       name: httpd
       state: started
       enabled: true
-
    - name: installation mysql 
      yum:
       name: mariadb-server
       state: latest
    - name:
-      yum: 
+     yum: 
       name: MySQL-python
       state: latest
 
